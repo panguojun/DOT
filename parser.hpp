@@ -1,3 +1,7 @@
+/**
+           图形化编程语言
+           分析图片里的符号
+*/
 class enum SYMBOL
 {
     ARROW,
