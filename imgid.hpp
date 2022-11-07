@@ -1,21 +1,21 @@
 /**
-*               Í¼ÏñÄÚµÄ·ûºÅÊ¶±ğ
-*               ¸ù¾İÂ·¾¶»ı·ÖÒÔ¼°¹æ·¶³¡Ô­Àí£º
-*               ÏòÁ¿ÔÚÒ»¸öÖÜÆÚÄÚÒÆ¶¯£¬½øĞĞÌØ
-*               Õ÷²É¼¯ÔÚÖÜÆÚ¿ªÊ¼Óë½áÊøÁ½¶Ë±È
-*               ½ÏÏòÁ¿£¬Ò»ÖÖ¾Ö²¿ÌØÕ÷ÌáÈ¡
+*               å›¾åƒå†…çš„ç¬¦å·è¯†åˆ«
+*               æ ¹æ®è·¯å¾„ç§¯åˆ†ä»¥åŠè§„èŒƒåœºåŸç†ï¼š
+*               å‘é‡åœ¨ä¸€ä¸ªå‘¨æœŸå†…ç§»åŠ¨ï¼Œè¿›è¡Œç‰¹
+*               å¾é‡‡é›†åœ¨å‘¨æœŸå¼€å§‹ä¸ç»“æŸä¸¤ç«¯æ¯”
+*               è¾ƒå‘é‡ï¼Œä¸€ç§å±€éƒ¨ç‰¹å¾æå–
 */
 #define GETRED(rgb)     GetBValue(rgb)
 #define GETGREEN(rgb)   GetGValue(rgb)
 #define GETBLUE(rgb)    GetRValue(rgb)
 scope imageid
 {
-    static int SIZEX = 256;						// ÇøÓò³ß¶È
+    static int SIZEX = 256;						// åŒºåŸŸå°ºåº¦
     static int SIZEY = 256;
     static CDymPng png;
     static char* hismap = 0;
-    static int cycle_depth = 18;                 // ÖÜÆÚ
-    static int wavlen = 10;                      // ÖÜÆÚ
+    static int cycle_depth = 18;                 // å‘¨æœŸ
+    static int wavlen = 10;                      // å‘¨æœŸ
 
     bool walk(rvec2 v, int ix, int iy, int depth, int phase, std::function<bool(int ix, int iy)> fun)
     {
@@ -56,7 +56,7 @@ scope imageid
     {
         if (png.Width() > 0)
         {
-            y = png.Height() - 1 - y; // ÉÏÏÂµßµ¹
+            y = png.Height() - 1 - y; // ä¸Šä¸‹é¢ å€’
             return png.gifGetPixel(x, y);
         }
         return 0;
@@ -64,6 +64,13 @@ scope imageid
     int distance(int x1, int x2, int y1, int y2)
     {
         return (int)sqrt((x1 - x2)* (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+    real angle(int x1, int x2, int y1, int y2)
+    {
+        vec2 v1(x1, y1);
+        vec2 v2(x2, y2);
+        real ang = dot(v1.normcopy(),v1.normcopy());
+        return ang;
     }
     void walk()
     {
