@@ -99,23 +99,23 @@ scope imageid
                 {
                     vec2 v;
                     walk(v, i, j, 0, 0, [i, j](int ix, int iy)->bool {
-                            int cor = getPixelCor(ix, iy);
-                            if (GETRED(cor) >= 50)
-                            {
-                                if (distance(i, j, ix, iy) > wavlen)
-                                    return false;
-                                else if(isend(ix, iy))
-                                    return true;
-                                else if(isarrow(ix, iy))
-                                    return true;
-                                else if(iscircle(ix, iy))
-                                    return true;
-                                    
-                                pixel(ix, iy, 0xFF00FFff);
+                        int cor = getPixelCor(ix, iy);
+                        if (GETRED(cor) >= 50)
+                        {
+                            if (distance(i, j, ix, iy) > wavlen)
+                                return false;
+                            else if(isend(ix, iy))
                                 return true;
-                            }
-                            return false;
-                        });
+                            else if(isarrow(ix, iy))
+                                return true;
+                            else if(iscircle(ix, iy))
+                                return true;
+
+                            pixel(ix, iy, 0xFF00FFff);
+                            return true;
+                        }
+                        return false;
+                    });
                 }
             }
         }
