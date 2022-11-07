@@ -83,12 +83,10 @@ scope imageid
     void walk()
     {
         clearhistory();
-
         if (png.Width() == 0)
         {
            ASSERT( png.LoadFromFileA("C:/Users/18858/Desktop/test.png"))
         }
-
         for (int i = 1; i < SIZEX; i++) {
             for (int j = 1; j < SIZEY; j++)
             {
