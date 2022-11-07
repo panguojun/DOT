@@ -72,6 +72,14 @@ scope imageid
         real ang = dot(v1.normcopy(),v1.normcopy());
         return ang;
     }
+    bool isend(int x, int y)
+    {
+        return true;
+    }
+    bool isarrow(int x, int y)
+    {
+        return true;
+    }
     void walk()
     {
         clearhistory();
@@ -94,6 +102,10 @@ scope imageid
                             {
                                 if (distance(i, j, ix, iy) > wavlen)
                                     return false;
+                                if(isend(ix, iy))
+                                    return true;
+                                if(isarrow(ix, iy))
+                                    return true;
                                 pixel(ix, iy, 0xFF00FFff);
                                 return true;
                             }
