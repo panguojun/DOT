@@ -116,6 +116,19 @@ scope imageid
     {
         return true;
     }
+    real calcsize(vector<vec2> plist)
+    {
+        real mdis = 0;
+        for (crauto em1 : plist)
+        for (crauto em2 : plist)
+        {
+            real dis = (em1 - em2).len();
+            if (dis > mdis)
+            {
+                mdis = dis;
+            }
+        }
+    }
     // ---------------------------------
     // walk
     // 几何，代数，周期性, PI, E
@@ -135,7 +148,8 @@ scope imageid
                     vector<vec2> endpoints, arrows;
                     PRINT("walk ------------------ ");
                     int cor = RNDCOR;
-                    walk(i, j, 0, 0, [i, j, &endpoints, &arrows, cor](int ix, int iy) ->bool {
+                    int x0 = i, y0 = j;
+                    walk(i, j, 0, 0, [&x0, &y0, &endpoints, &arrows, cor](int ix, int iy) ->bool {
                         if (hittest(ix, iy))
                         {
                             if (isend(ix, iy))
@@ -143,7 +157,7 @@ scope imageid
                                // PRINT("END");
                                 pointi(ix, iy, 2, 0xFF00FFff);
                                 endpoints.emplace_back(ix, iy);
-                               // if (distance(i, j, ix, iy) > wavlen)
+                               // if (distance(x0, y0, ix, iy) > wavlen)
                                  //   return false;
                             }
                             if (isarrow(ix, iy))
@@ -151,7 +165,7 @@ scope imageid
                                 //PRINT("ARROW " << ix << "," << iy);
                                 arrows.emplace_back(ix, iy);
                                 pointi(ix, iy, 2, 0xFFFF00ff);
-                               // if (distance(i, j, ix, iy) > wavlen)
+                               // if (distance(x0, y0, ix, iy) > wavlen)
                                 //    return false;
                             }
                            // PRINT(ix <<","<<iy);
