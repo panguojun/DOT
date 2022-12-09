@@ -48,12 +48,12 @@ function onlbtn()
 end
 function onGUI()
 	local hit = false
-	if(button1(600, 50, "dump")) then
+	if(button1(650, 50, "dump")) then
 		dump_cst()
 		dophg("script/test.txt")
 		hit = true
 	end
-	if(button1(600, 150, "reset")) then
+	if(button1(650, 150, "reset")) then
 		if count >= 1 and #veclist > 1 then
 			link_cst1.C.o = veclist[1].o
 		end
@@ -69,11 +69,14 @@ function onGUI()
 		bshow = true
 		dophg("script/test.txt")
 	end
-	if button1(600, 250, "clear") then
+	if button1(650, 250, "clear") then
 		count = 1
 		veclist = {}
 		hit = true
 		bshow = false
+	end
+	if button1(650, 360, "exit") then
+		exit()
 	end
 	return hit
 end
